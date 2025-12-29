@@ -1,0 +1,34 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+<article class="card" style="max-width:900px;">
+
+  <h2>{{ project.title }}</h2>
+  <p class="meta">제작일: {{ project.created_at }}</p>
+
+  {% if project.thumbnail %}
+  <img src="{{ project.thumbnail.url }}"
+       style="width:100%; border-radius:16px; margin:20px 0;">
+  {% endif %}
+
+  <p style="line-height:1.8;">
+    {{ project.summary }}
+  </p>
+
+  <div class="project-actions" style="margin-top:24px;">
+    {% if project.dashboard_url %}
+    <a href="{{ project.dashboard_url }}" class="btn btn-dashboard">
+      📊 대시보드 가기
+    </a>
+    {% endif %}
+
+    {% if project.github_url %}
+    <a href="{{ project.github_url }}" target="_blank" class="btn btn-project">
+      🔗 GitHub
+    </a>
+    {% endif %}
+  </div>
+
+</article>
+{% endblock %}

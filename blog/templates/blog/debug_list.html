@@ -1,0 +1,56 @@
+{% extends "blog/base.html" %}
+{% block title %}삽질 로그{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <h2>🛠 삽질 로그</h2>
+  <p class="meta">
+    개발 중 마주친 문제와 해결 과정을 기록합니다.
+  </p>
+</div>
+
+<div class="grid">
+  {% for post in posts %}
+  <div class="card">
+
+    <!-- Category Badge -->
+    <span class="badge badge-debug mb-2">삽질 로그</span>
+
+    <!-- Title -->
+    <h3>{{ post.title }}</h3>
+
+    <!-- Meta -->
+    <div class="meta">
+      {{ post.created_at|date:"Y.m.d" }}
+      {% if post.sub_category %}
+        · {{ post.sub_category }}
+      {% endif %}
+    </div>
+
+    <!-- Preview -->
+    <p>
+      {{ post.content|truncatechars:120 }}
+    </p>
+
+    <!-- Link -->
+    <a href="{% url 'debug_detail' post.id %}"
+       style="font-weight:600; color:#ef4444;">
+      해결 과정 보기 →
+    </a>
+    {% if user.is_staff %}
+    <form method="post" action="{% url 'post_delete' post.id %}"
+        style="display:inline;"
+        onsubmit="return confirm('정말 삭제할까요?');">
+    {% csrf_token %}
+    <button class="btn btn-danger btn-sm">
+        삭제
+    </button>
+    </form>
+    {% endif %}
+
+  </div>
+  {% empty %}
+  <p>아직 등록된 삽질 로그가 없습니다.</p>
+  {% endfor %}
+</div>
+{% endblock %}

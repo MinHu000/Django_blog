@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+{% block title %}Study / Notes{% endblock %}
+
+{% block content %}
+<h2>Study / Notes</h2>
+
+<div class="grid">
+  {% for post in posts %}
+  <div class="card">
+
+    <span class="badge">
+      {{ post.category }}
+    </span>
+
+    <h3>{{ post.title }}</h3>
+
+    <div class="meta">
+      {{ post.created_at }}
+    </div>
+
+    <p>
+      {{ post.content|truncatechars:120 }}
+    </p>
+
+    <div class="project-actions">
+        <a href="{% url 'study_detail' post.id %}"
+        class="btn btn-project">
+        Read more →
+        </a>
+      {% if user.is_staff %}
+      <form action="{% url 'post_delete' post.id %}" method="post" style="margin:0;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-delete">
+          🗑 삭제
+        </button>
+      </form>
+      {% endif %}
+    </div>
+
+  </div>
+  {% empty %}
+    <p>아직 Study 글이 없습니다.</p>
+  {% endfor %}
+</div>
+{% endblock %}

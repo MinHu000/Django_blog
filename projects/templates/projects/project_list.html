@@ -1,0 +1,70 @@
+{% extends "blog/base.html" %}
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<h2>Projects</h2>
+
+<div class="project-list">
+
+{% for project in projects %}
+<article class="project-item card">
+  <div class="project-row">
+
+    <!-- 왼쪽 텍스트 -->
+    <div class="project-text">
+      <h3>{{ project.title }}</h3>
+
+      <p class="meta">
+        제작일: {{ project.created_at|date:"M. d, Y" }}
+      </p>
+
+      <p class="summary">
+        {{ project.summary }}
+      </p>
+
+      <div class="project-actions">
+
+        {% if project.dashboard_url %}
+        <a href="{{ project.dashboard_url }}" class="btn btn-dashboard">
+          📊 대시보드 가기
+        </a>
+        {% endif %}
+
+        <!-- 프로젝트 상세 -->
+        <a href="{% url 'project_detail' project.slug %}"
+           class="btn btn-project">
+          🔍 프로젝트 상세
+        </a>
+
+        {% if project.github_url %}
+        <a href="{{ project.github_url }}"
+           target="_blank"
+           class="btn btn-project">
+          <span>🔗</span> GitHub
+        </a>
+        {% endif %}
+
+        {% if user.is_staff %}
+        <a href="{% url 'project_delete' project.slug %}"
+           class="btn btn-delete"
+           onclick="return confirm('정말 삭제할까요?');">
+          🗑 삭제
+        </a>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <!-- 오른쪽 썸네일 -->
+    {% if project.thumbnail %}
+    <div class="project-thumb">
+      <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}">
+    </div>
+    {% endif %}
+
+  </div>
+</article>
+{% endfor %}
+
+</div>
+{% endblock %}

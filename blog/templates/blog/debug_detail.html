@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+
+  <!-- Category -->
+  <span class="badge badge-debug mb-3">삽질 로그</span>
+
+  <!-- Title -->
+  <h2>{{ post.title }}</h2>
+
+  <!-- Meta -->
+  <div class="meta mb-4">
+    {{ post.created_at|date:"Y.m.d" }}
+    {% if post.sub_category %}
+      · {{ post.sub_category }}
+    {% endif %}
+  </div>
+
+  <hr>
+
+  <!-- Content -->
+  <div class="content-body" style="line-height:1.8;">
+    {{ post.content|linebreaks }}
+  </div>
+
+  <hr>
+  {% if user.is_staff %}
+<form method="post" action="{% url 'post_delete' post.id %}">
+  {% csrf_token %}
+  <button class="btn btn-danger">
+    이 글 삭제
+  </button>
+    <!-- Back -->
+  <a href="{% url 'debug_list' %}"
+     style="font-weight:600; color:#ef4444;">
+    ← 삽질 로그 목록으로
+  </a>
+</form>
+{% endif %}
+
+
+
+</div>
+{% endblock %}

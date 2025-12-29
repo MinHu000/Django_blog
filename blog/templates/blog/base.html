@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Minhu.dev{% endblock %}</title>
+
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f6f8;
+    color: #1f2937;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* =========================
+     Layout
+  ========================= */
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* =========================
+     Sidebar
+  ========================= */
+  .sidebar {
+    width: 280px;
+    background-color: #0f172a;
+    color: #e5e7eb;
+    padding: 32px 24px;
+    position: fixed;
+    height: 100vh;
+  }
+
+  .sidebar h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+
+  .nav-section {
+    margin-bottom: 32px;
+  }
+
+  .nav-section span {
+    display: block;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .sidebar a {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: #cbd5f5;
+    margin-bottom: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .sidebar a:hover {
+    background-color: rgba(255,255,255,0.08);
+    color: #ffffff;
+    transform: translateX(4px);
+  }
+
+  /* =========================
+     Content
+  ========================= */
+  .content {
+    margin-left: 280px;
+    padding: 48px 64px;
+    width: 100%;
+  }
+
+  /* =========================
+     Card
+  ========================= */
+  .card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 28px 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  }
+
+  /* =========================
+     Text
+  ========================= */
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 14px;
+  }
+
+  /* =========================
+     Project List (세로형)
+  ========================= */
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 1000px;
+  }
+
+  .project-item {
+    padding: 32px 36px;
+  }
+
+  .project-row {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .project-text {
+    flex: 1;
+  }
+
+  .project-item .summary {
+    line-height: 1.7;
+    color: #374151;
+    margin-top: 12px;
+  }
+
+  /* =========================
+     Thumbnail
+  ========================= */
+  .project-thumb {
+    width: 250px;
+    height: 220px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  }
+
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* =========================
+     Buttons (🔥 핵심 수정 부분)
+  ========================= */
+  .project-actions {
+    margin-top: 18px;
+    display: flex;
+    gap: 12px;
+  }
+
+  /* 공통 버튼 */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+
+  /* 대시보드 */
+  .btn-dashboard {
+    background-color: #2563eb;
+    color: #ffffff;
+  }
+
+  .btn-dashboard:hover {
+    background-color: #1d4ed8;
+  }
+
+  /* 프로젝트 보기 */
+  .btn-project {
+    background-color: #111827;
+    color: #ffffff;
+  }
+
+  .btn-project:hover {
+    background-color: #000000;
+  }
+
+  /* 삭제 */
+  .btn-delete {
+    background-color: #ef4444;
+    color: #ffffff;
+  }
+
+  .btn-delete:hover {
+    background-color: #dc2626;
+  }
+</style>
+
+
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- =========================
+       Sidebar
+  ========================= -->
+  <aside class="sidebar">
+    <h1>Minhu.dev</h1>
+
+    <div class="nav-section">
+      <span>Navigation</span>
+      <a href="/">🏠 Home</a>
+      <a href="/projects/">🚀 Projects</a>
+    </div>
+
+    <div class="nav-section">
+      <span>Categories</span>
+      <a href="/debug/">🛠 삽질 로그</a>
+      <a href="{% url 'study_list' %}">
+        📘 Study / Notes
+      </a>
+
+    </div>
+
+    <div class="nav-section">
+      <span>Links</span>
+      <a href="https://github.com/" target="_blank">💻 GitHub</a>
+    </div>
+  </aside>
+
+  <!-- =========================
+       Main Content
+  ========================= -->
+  <main class="content">
+    {% block content %}{% endblock %}
+    {% if user.is_authenticated and user.is_staff %}
+  <div style="text-align:right; margin-bottom:20px;">
+    <a href="/admin/blog/post/add/"
+       class="btn btn-sm btn-outline-primary">
+      ✏️ 글 작성 (Admin)
+    </a>
+  </div>
+{% endif %}
+  </main>
+
+</div>
+
+
+</body>
+</html>

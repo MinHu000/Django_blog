@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width:900px">
+
+  <span class="badge">
+    {{ post.category }}
+  </span>
+
+  <h2>{{ post.title }}</h2>
+
+  <div class="meta">
+    {{ post.created_at }}
+  </div>
+
+  <div style="margin-top:24px; line-height:1.8;">
+    {{ post.content|linebreaks }}
+  </div>
+
+  <div class="project-actions" style="margin-top:32px;">
+    <a href="{% url 'study_list' %}" class="btn btn-project">
+      ← 목록으로
+    </a>
+
+    {% if user.is_staff %}
+    <form action="{% url 'post_delete' post.id %}" method="post">
+      {% csrf_token %}
+      <button class="btn btn-delete">🗑 삭제</button>
+    </form>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}
