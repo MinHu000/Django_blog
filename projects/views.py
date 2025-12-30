@@ -33,3 +33,16 @@ def project_delete(request, slug):
     return render(request, "projects/project_confirm_delete.html", {
         "project": project
     })
+
+def project_list(request):
+    projects = Project.objects.all().order_by("-created_at")
+    project_count = projects.count()
+
+    return render(
+        request,
+        "projects/project_list.html",
+        {
+            "projects": projects,
+            "project_count": project_count,
+        }
+    )

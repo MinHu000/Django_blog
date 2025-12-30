@@ -2,6 +2,33 @@
 {% block title %}Study / Notes{% endblock %}
 
 {% block content %}
+<!-- 📘 Study Progress Terminal -->
+<div class="sandcastle-card mb-5">
+  <div class="sandcastle-head">
+    <div class="sandcastle-title">$ knowledge</div>
+    <div class="sandcastle-meta">
+      notes: {{ study_count }}
+    </div>
+  </div>
+
+  <div class="sandcastle-grid">
+    {% for i in ""|ljust:study_count %}
+      {% if forloop.counter0|divisibleby:20 %}
+        <span class="castle">🖊️</span>
+      {% elif forloop.counter0|divisibleby:10 %}
+        <span class="castle">✒️</span>
+      {% else %}
+        <span class="castle">✏️</span>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="sandcastle-hint">
+    * 스터디 하나당 연필 하나가 쌓인다. (10개마다 진화)
+  </div>
+</div>
+
+
 <h2>Study / Notes</h2>
 
 <div class="grid">

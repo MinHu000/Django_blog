@@ -20,6 +20,7 @@ from blog import views
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
+    path("", include("blog.urls")),
     path("admin/", admin.site.urls),
     path("", include("pages.urls")),# /about, /contact
     path("", views.post_list, name="post_list"),# /
