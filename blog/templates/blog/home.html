@@ -1,22 +1,10 @@
-{% extends "blog/base.html" %}
+{% extends "base.html" %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
 
-<!-- 🔥 Terminal Hero (홈 전용) -->
-<section class="terminal-hero">
-  <div class="terminal">
-    <div class="terminal-header">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-    </div>
-    <pre id="terminal-output"></pre>
-  </div>
-</section>
-
-<!-- 🧭 Status Terminal -->
-<div class="sandcastle-card mb-6">
+<!-- 🧭 Status Terminal (맨 위) -->
+<div class="sandcastle-card mb-4">
   <div class="sandcastle-head">
     <div class="sandcastle-title">$ status</div>
     <div class="sandcastle-meta">overview</div>
@@ -59,35 +47,30 @@
   </div>
 </div>
 
+<!-- 🔥 자기소개 터미널 (Status 아래) -->
+<section class="terminal-hero mb-4">
+  <div class="terminal">
+    <div class="terminal-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <pre id="terminal-output"></pre>
+  </div>
+</section>
+
 <!-- 📝 최근 글 -->
-<h2>최근 글</h2>
+<h2 class="mb-3">최근 글</h2>
 <div class="grid">
   {% for post in posts %}
-  <div class="card">
-    <span class="badge">{{ post.category }}</span>
-    <h3>{{ post.title }}</h3>
-    <div class="meta">{{ post.created_at|date:"Y.m.d" }}</div>
-    <p>{{ post.content|truncatechars:120 }}</p>
-      <div class="project-actions"
-     style="display:flex; gap:12px; align-items:center; margin-top:16px;">
-
-  {% if post.category == "debug" %}
-    <a href="{% url 'debug_detail' post.id %}" class="btn btn-primary">
-      Read more →
-    </a>
-  {% elif post.category == "study" %}
-    <a href="{% url 'study_detail' post.id %}" class="btn btn-primary">
-      Read more →
-    </a>
-  {% endif %}
-
-</div>
-  </div>
-
+    <div class="card">
+      <span class="badge">{{ post.category }}</span>
+      <h3>{{ post.title }}</h3>
+      <div class="meta">{{ post.created_at|date:"Y.m.d" }}</div>
+      <p>{{ post.content|truncatechars:120 }}</p>
+    </div>
   {% endfor %}
-  
 </div>
-
 
 <!-- ⌨️ 터미널 타이핑 스크립트 -->
 <script>
@@ -120,7 +103,7 @@ function typeLine() {
     output.textContent += "\n";
     lineIndex++;
     charIndex = 0;
-    setTimeout(typeLine, 280);
+    setTimeout(typeLine, 180);
   }
 }
 typeLine();

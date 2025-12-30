@@ -1,4 +1,4 @@
-{% extends "blog/base.html" %}
+{% extends "base.html" %}
 {% block title %}Projects{% endblock %}
 
 {% block content %}
@@ -11,17 +11,16 @@
     </div>
   </div>
 
-  <div class="sandcastle-grid">
-    {% for i in ""|ljust:project_count %}
-      {% if forloop.counter0|divisibleby:20 %}
+    <div class="sandcastle-grid">
+      {% if project_count >= 20 %}
         <span class="castle">🚀</span>
-      {% elif forloop.counter0|divisibleby:10 %}
+      {% elif project_count >= 10 %}
         <span class="castle">🛰️</span>
       {% else %}
         <span class="castle">🛸</span>
       {% endif %}
-    {% endfor %}
-  </div>
+    </div>
+
 
   <div class="sandcastle-hint">
     * 프로젝트 하나당 로켓 하나가 발사된다.
