@@ -24,6 +24,7 @@ urlpatterns = [
 
     # 🔧 Admin
     path("admin/", admin.site.urls),
+    path("dashboard/", include("dashboard.urls")),
 ]
 
 if settings.DEBUG:
