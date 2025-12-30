@@ -7,7 +7,7 @@
 <div class="grid">
   {% for post in posts %}
   <div class="card">
-    
+
     <span class="badge">
       {{ post.category|default:"General" }}
     </span>
@@ -22,27 +22,26 @@
       {{ post.content|truncatechars:120 }}
     </p>
 
-    <!-- ✅ 여기부터 핵심 -->
-    <div class="project-actions">
+    <!-- 🔥 버튼 영역 -->
+    <div class="project-actions"
+         style="display:flex; gap:12px; align-items:center;">
 
+      <!-- Read more -->
       <a href="#"
-         class="btn btn-project">
+         class="btn btn-primary">
         Read more →
       </a>
 
+      <!-- 삭제 버튼 (a 태그로 통일) -->
       {% if user.is_staff %}
-      <form action="{% url 'post_delete' post.id %}"
-            method="post"
-            style="margin:0;">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-delete">
-          🗑 삭제
-        </button>
-      </form>
+      <a href="{% url 'post_delete' post.id %}"
+         class="btn btn-delete"
+         onclick="return confirm('정말 삭제할까요?');">
+        🗑 삭제
+      </a>
       {% endif %}
 
     </div>
-    <!-- ✅ 여기까지 -->
 
   </div>
   {% endfor %}

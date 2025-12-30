@@ -1,0 +1,200 @@
+/* ===============================
+   Global
+================================ */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f4f6f8;
+  color: #1f2937;
+}
+
+/* ===============================
+   Header (상단바)
+================================ */
+#header {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: #fff;
+}
+
+#header h1 a {
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+#header .user-tools a {
+  color: #c7d2fe;
+}
+
+#header .user-tools a:hover {
+  color: #ffffff;
+}
+
+/* ===============================
+   Breadcrumbs
+================================ */
+.breadcrumbs {
+  background: #020617;
+  border: none;
+  color: #cbd5f5;
+}
+
+/* ===============================
+   Sidebar
+================================ */
+#nav-sidebar {
+  background: #020617;
+}
+
+#nav-sidebar .module caption {
+  background: #0f172a;
+  color: #cbd5f5;
+  font-weight: 600;
+}
+
+#nav-sidebar a {
+  color: #c7d2fe;
+}
+
+#nav-sidebar a:hover {
+  background: rgba(255,255,255,0.06);
+  color: #ffffff;
+}
+
+/* ===============================
+   Main card (폼 영역)
+================================ */
+#content {
+  padding: 32px;
+}
+
+.module {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  padding: 28px;
+}
+
+/* ===============================
+   Inputs
+================================ */
+input, textarea, select {
+  border-radius: 10px !important;
+  border: 1px solid #e5e7eb !important;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 2px rgba(79,70,229,0.15);
+}
+
+/* ===============================
+   Buttons
+================================ */
+.button, input[type=submit], .submit-row input {
+  background: #111827;
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 600;
+  border: none;
+}
+
+.button.default {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+}
+
+.button:hover {
+  opacity: 0.92;
+}
+
+/* ===============================
+   Save row
+================================ */
+.submit-row {
+  background: transparent;
+  border: none;
+  padding-top: 24px;
+}
+
+/* =====================================
+   🔥 TEAL / CYAN 완전 제거 구역
+   Django admin 기본 청록색 제거
+===================================== */
+
+/* Header / breadcrumb */
+#header,
+.breadcrumbs {
+  background: #020617 !important;
+}
+
+/* Sidebar section header */
+#nav-sidebar .module caption {
+  background: #0f172a !important;
+  color: #cbd5f5 !important;
+}
+
+/* Sidebar selected */
+#nav-sidebar .current-app .section,
+#nav-sidebar .current-model {
+  background: rgba(255,255,255,0.08) !important;
+}
+
+/* Links / add buttons */
+a,
+a:visited {
+  color: #6366f1;
+}
+
+a:hover {
+  color: #4f46e5;
+}
+
+/* + Add 버튼 (초록 제거) */
+.addlink,
+.addlink:visited {
+  color: #6366f1 !important;
+}
+
+.addlink:hover {
+  color: #4f46e5 !important;
+}
+
+/* Save buttons (청록 → 네이비/블루) */
+.button,
+input[type=submit],
+.submit-row input {
+  background: #111827 !important;
+  color: #ffffff !important;
+}
+
+.button.default {
+  background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
+}
+
+/* Selected row highlight */
+tr.selected {
+  background: rgba(99,102,241,0.08) !important;
+}
+
+/* ===============================
+   Forms / labels
+================================ */
+.module h2,
+.module caption {
+  background: transparent !important;
+  color: #1f2937 !important;
+}
+
+/* Date/time widget icons */
+.datetimeshortcuts a {
+  color: #6366f1 !important;
+}
+
+/* Focus outline 제거 */
+:focus {
+  outline-color: #6366f1 !important;
+}

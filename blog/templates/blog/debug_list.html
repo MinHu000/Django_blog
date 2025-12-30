@@ -32,22 +32,27 @@
       {{ post.content|truncatechars:120 }}
     </p>
 
-    <!-- Link -->
-    <a href="{% url 'debug_detail' post.id %}"
-       style="font-weight:600; color:#ef4444;">
-      해결 과정 보기 →
-    </a>
-    {% if user.is_staff %}
-    <form method="post" action="{% url 'post_delete' post.id %}"
-        style="display:inline;"
-        onsubmit="return confirm('정말 삭제할까요?');">
-    {% csrf_token %}
-    <button class="btn btn-danger btn-sm">
-        삭제
-    </button>
-    </form>
-    {% endif %}
+    <!-- 🔥 버튼 영역 (다른 페이지와 동일 구조) -->
+    <div class="project-actions"
+         style="display:flex; gap:12px; align-items:center; margin-top:16px;">
 
+      <!-- 상세 보기 -->
+      <a href="{% url 'debug_detail' post.id %}"
+         class="btn btn-primary">
+        해결 과정 보기 →
+      </a>
+
+      <!-- 삭제 버튼 (a 태그로 통일) -->
+      {% if user.is_staff %}
+      <a href="{% url 'post_delete' post.id %}"
+         class="btn btn-delete"
+         onclick="return confirm('정말 삭제할까요?');">
+        🗑 삭제
+      </a>
+      {% endif %}
+
+    </div>
+    
   </div>
   {% empty %}
   <p>아직 등록된 삽질 로그가 없습니다.</p>

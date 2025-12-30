@@ -4,240 +4,294 @@
   <meta charset="UTF-8">
   <title>{% block title %}Minhu.dev{% endblock %}</title>
 
-  <!-- Google Font -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-  * {
-    box-sizing: border-box;
-  }
+/* =========================
+   Global Reset
+========================= */
+* {
+  box-sizing: border-box;
+}
 
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #f4f6f8;
-    color: #1f2937;
-  }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f6f8;
+  color: #1f2937;
+}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-  /* =========================
-     Layout
-  ========================= */
-  .layout {
-    display: flex;
-    min-height: 100vh;
-  }
+/* =========================
+   Layout
+========================= */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
 
-  /* =========================
-     Sidebar
-  ========================= */
-  .sidebar {
-    width: 280px;
-    background-color: #0f172a;
-    color: #e5e7eb;
-    padding: 32px 24px;
-    position: fixed;
-    height: 100vh;
-  }
+/* =========================
+   Sidebar
+========================= */
+.sidebar {
+  width: 280px;
+  background-color: #0f172a;
+  color: #e5e7eb;
+  padding: 32px 24px;
+  position: fixed;
+  height: 100vh;
+}
 
-  .sidebar h1 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 40px;
-  }
+.sidebar h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
 
-  .nav-section {
-    margin-bottom: 32px;
-  }
+.nav-section {
+  margin-bottom: 32px;
+}
 
-  .nav-section span {
-    display: block;
-    font-size: 0.75rem;
-    color: #94a3b8;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-  }
+.nav-section span {
+  display: block;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
 
-  .sidebar a {
-    display: block;
-    padding: 12px 16px;
-    border-radius: 10px;
-    font-weight: 500;
-    color: #cbd5f5;
-    margin-bottom: 6px;
-    transition: all 0.2s ease;
-  }
+.sidebar a {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #cbd5f5;
+  margin-bottom: 6px;
+  transition: all 0.2s ease;
+}
 
-  .sidebar a:hover {
-    background-color: rgba(255,255,255,0.08);
-    color: #ffffff;
-    transform: translateX(4px);
-  }
+.sidebar a:hover {
+  background-color: rgba(255,255,255,0.08);
+  color: #ffffff;
+  transform: translateX(4px);
+}
 
-  /* =========================
-     Content
-  ========================= */
-  .content {
-    margin-left: 280px;
-    padding: 48px 64px;
-    width: 100%;
-  }
+/* =========================
+   Content
+========================= */
+.content {
+  margin-left: 280px;
+  padding: 48px 64px;
+  width: 100%;
+}
 
-  /* =========================
-     Card
-  ========================= */
-  .card {
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 28px 32px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: all 0.25s ease;
-  }
+/* =========================
+   Card
+========================= */
+.card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-  }
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
 
-  /* =========================
-     Text
-  ========================= */
-  h2 {
-    font-size: 1.8rem;
-    margin-bottom: 24px;
-  }
+/* =========================
+   Text
+========================= */
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
 
-  h3 {
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-  }
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
 
-  .meta {
-    font-size: 0.85rem;
-    color: #6b7280;
-    margin-bottom: 14px;
-  }
+.meta {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 14px;
+}
 
-  /* =========================
-     Project List (세로형)
-  ========================= */
-  .project-list {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    max-width: 1000px;
-  }
+/* =========================
+   Button System (전 페이지 공통)
+========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
 
-  .project-item {
-    padding: 32px 36px;
-  }
+/* 기본 버튼 (Read more 등) */
+.btn-primary {
+  background-color: #111827;
+  color: #ffffff;
+}
 
-  .project-row {
-    display: flex;
-    gap: 32px;
-    align-items: flex-start;
-  }
+.btn-primary:hover {
+  background-color: #000000;
+}
 
-  .project-text {
-    flex: 1;
-  }
+/* 삭제 버튼 (🔥 항상 표시) */
+.btn-delete {
+  background-color: #ef4444;
+  color: #ffffff;
+}
 
-  .project-item .summary {
-    line-height: 1.7;
-    color: #374151;
-    margin-top: 12px;
-  }
+.btn-delete:hover {
+  background-color: #dc2626;
+}
 
-  /* =========================
-     Thumbnail
-  ========================= */
-  .project-thumb {
-    width: 250px;
-    height: 220px;
-    flex-shrink: 0;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-  }
+/* button 태그 초기화 (디자인 꼬임 방지) */
+button.btn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+}
 
-  .project-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+/* =========================
+   Project Layout
+========================= */
+.project-row {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
 
-  /* =========================
-     Buttons (🔥 핵심 수정 부분)
-  ========================= */
-  .project-actions {
-    margin-top: 18px;
-    display: flex;
-    gap: 12px;
-  }
+.project-thumb {
+  width: 250px;
+  height: 220px;
+  flex-shrink: 0;
+  border-radius: 18px;
+  overflow: hidden;
+}
 
-  /* 공통 버튼 */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    line-height: 1;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease;
-  }
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-  /* 대시보드 */
-  .btn-dashboard {
-    background-color: #2563eb;
-    color: #ffffff;
-  }
+/* =========================
+   Terminal Hero
+========================= */
+.terminal-hero {
+  height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 120px;
+}
 
-  .btn-dashboard:hover {
-    background-color: #1d4ed8;
-  }
+.terminal {
+  width: 100%;
+  max-width: 920px;
+  min-height: 420px;
+  background: #020617;
+  border-radius: 18px;
+  box-shadow: 0 28px 60px rgba(0,0,0,0.4);
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
 
-  /* 프로젝트 보기 */
-  .btn-project {
-    background-color: #111827;
-    color: #ffffff;
-  }
+.terminal-header {
+  background: #020617;
+  padding: 16px 18px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
-  .btn-project:hover {
-    background-color: #000000;
-  }
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
 
-  /* 삭제 */
-  .btn-delete {
-    background-color: #ef4444;
-    color: #ffffff;
-  }
+.red { background: #ef4444; }
+.yellow { background: #facc15; }
+.green { background: #22c55e; }
 
-  .btn-delete:hover {
-    background-color: #dc2626;
-  }
+#terminal-output {
+  padding: 32px 36px;
+  color: #e5e7eb;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+/* =========================
+   Floating Write Button
+========================= */
+.fab-write {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(79, 70, 229, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 1000;
+}
+
+.fab-write:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(79, 70, 229, 0.45);
+}
+/* 🔥 삭제 버튼 강제 표시 (최종 덮어쓰기) */
+.btn-delete {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  display: inline-flex !important;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;   /* ← 카드 사이 간격 */
+}
+
 </style>
-
-
 </head>
 
 <body>
 
 <div class="layout">
 
-  <!-- =========================
-       Sidebar
-  ========================= -->
+  <!-- Sidebar -->
   <aside class="sidebar">
     <h1>Minhu.dev</h1>
 
@@ -250,10 +304,7 @@
     <div class="nav-section">
       <span>Categories</span>
       <a href="/debug/">🛠 삽질 로그</a>
-      <a href="{% url 'study_list' %}">
-        📘 Study / Notes
-      </a>
-
+      <a href="{% url 'study_list' %}">📘 Study / Notes</a>
     </div>
 
     <div class="nav-section">
@@ -262,23 +313,72 @@
     </div>
   </aside>
 
-  <!-- =========================
-       Main Content
-  ========================= -->
+  <!-- Main Content -->
   <main class="content">
+
+    {% if request.resolver_match.url_name == "post_list" %}
+    <section class="terminal-hero">
+      <div class="terminal">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <pre id="terminal-output"></pre>
+      </div>
+    </section>
+    {% endif %}
+
     {% block content %}{% endblock %}
+
     {% if user.is_authenticated and user.is_staff %}
-  <div style="text-align:right; margin-bottom:20px;">
-    <a href="/admin/blog/post/add/"
-       class="btn btn-sm btn-outline-primary">
-      ✏️ 글 작성 (Admin)
+    <a href="/admin/blog/post/add/" class="fab-write" title="글 작성 (Admin)">
+      ✏️
     </a>
-  </div>
-{% endif %}
+    {% endif %}
+
   </main>
 
 </div>
 
+{% if request.resolver_match.url_name == "post_list" %}
+<script>
+const lines = [
+  "$ whoami",
+  "minhu",
+  "",
+  "$ focus",
+  "- Django Admin Customizing",
+  "- Crowd Control Project",
+  "- Study / Debug Logs",
+  "",
+  "$ status",
+  "learning & building"
+];
+
+const output = document.getElementById("terminal-output");
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeLine() {
+  if (!output || lineIndex >= lines.length) return;
+
+  const line = lines[lineIndex];
+  if (charIndex < line.length) {
+    output.textContent += line.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeLine, 28);
+  } else {
+    output.textContent += "\n";
+    lineIndex++;
+    charIndex = 0;
+    setTimeout(typeLine, 280);
+  }
+}
+
+typeLine();
+</script>
+{% endif %}
 
 </body>
 </html>

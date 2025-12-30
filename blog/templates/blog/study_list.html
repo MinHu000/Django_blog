@@ -22,19 +22,25 @@
       {{ post.content|truncatechars:120 }}
     </p>
 
-    <div class="project-actions">
-        <a href="{% url 'study_detail' post.id %}"
-        class="btn btn-project">
+    <!-- 🔥 버튼 영역 (project / post / debug 와 동일) -->
+    <div class="project-actions"
+         style="display:flex; gap:12px; align-items:center;">
+
+      <!-- Read more -->
+      <a href="{% url 'study_detail' post.id %}"
+         class="btn btn-primary">
         Read more →
-        </a>
+      </a>
+
+      <!-- 삭제 버튼 (a 태그로 통일) -->
       {% if user.is_staff %}
-      <form action="{% url 'post_delete' post.id %}" method="post" style="margin:0;">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-delete">
-          🗑 삭제
-        </button>
-      </form>
+      <a href="{% url 'post_delete' post.id %}"
+         class="btn btn-delete"
+         onclick="return confirm('정말 삭제할까요?');">
+        🗑 삭제
+      </a>
       {% endif %}
+
     </div>
 
   </div>
