@@ -11,35 +11,59 @@
   </div>
 
   <div class="terminal-lines">
-    <div>
-      debug:
-      {% for _ in ""|ljust:debug_count %}
-        {% if forloop.counter0|divisibleby:20 %}🏛️
-        {% elif forloop.counter0|divisibleby:10 %}🏯
-        {% else %}🏰
-        {% endif %}
-      {% endfor %}
-    </div>
+<div>
+  debug:
+  {% for _ in ""|ljust:debug_count %}
+    {# 10개마다 줄바꿈 (첫 줄 제외) #}
+    {% if forloop.counter0|divisibleby:10 and not forloop.first %}
+      <br>
+    {% endif %}
 
-    <div>
-      study:
-      {% for _ in ""|ljust:study_count %}
-        {% if forloop.counter0|divisibleby:20 %}🖊️
-        {% elif forloop.counter0|divisibleby:10 %}✒️
-        {% else %}✏️
-        {% endif %}
-      {% endfor %}
-    </div>
+    {# 단계별 아이콘 유지 #}
+    {% if forloop.counter0 >= 20 %}
+      🏛️
+    {% elif forloop.counter0 >= 10 %}
+      🏯
+    {% else %}
+      🏰
+    {% endif %}
+  {% endfor %}
+</div>
 
-    <div>
-      projects:
-      {% for _ in ""|ljust:project_count %}
-        {% if forloop.counter0|divisibleby:20 %}🛸
-        {% elif forloop.counter0|divisibleby:10 %}🛰️
-        {% else %}🚀
-        {% endif %}
-      {% endfor %}
-    </div>
+<div>
+  study:
+  {% for _ in ""|ljust:study_count %}
+    {% if forloop.counter0|divisibleby:10 and not forloop.first %}
+      <br>
+    {% endif %}
+
+    {% if forloop.counter0 >= 20 %}
+      🖊️
+    {% elif forloop.counter0 >= 10 %}
+      ✒️
+    {% else %}
+      ✏️
+    {% endif %}
+  {% endfor %}
+</div>
+
+<div>
+  projects:
+  {% for _ in ""|ljust:project_count %}
+    {% if forloop.counter0|divisibleby:10 and not forloop.first %}
+      <br>
+    {% endif %}
+
+    {% if forloop.counter0 >= 20 %}
+      🛸
+    {% elif forloop.counter0 >= 10 %}
+      🛰️
+    {% else %}
+      🚀
+    {% endif %}
+  {% endfor %}
+</div>
+
   </div>
 
   <div class="sandcastle-hint">
