@@ -91,22 +91,15 @@ TEMPLATES = [
 
 
 # =====================================================
-# DATABASE
+# DATABASE  ✅ 여기만 변경됨
 # =====================================================
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
-# 🔥 Render + Neon (Postgres)
-if os.environ.get("DATABASE_URL"):
-    DATABASES["default"] = dj_database_url.parse(
-        os.environ["DATABASE_URL"],
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
         ssl_require=True,
     )
+}
 
 
 # =====================================================
